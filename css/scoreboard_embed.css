@@ -1,0 +1,17 @@
+.hscube-scoreboard {
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 15px;
+  border: 2px solid #555555;
+}
+.hscube-scoreboard .hscube-team {
+  padding: 10px;
+  font-size: 1.5em;
+}
+.hscube-scoreboard .hscube-team .hscube-team-logo {
+  height: 32px;
+  padding: 5px 20px 5px 0px
+}
+.hscube-scoreboard .hscube-team .hscube-divider {
+  padding: 0px 15px;
+}

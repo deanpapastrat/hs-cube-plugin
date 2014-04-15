@@ -1,0 +1,42 @@
+<?php
+/*
+
+*************************************************************************************
+
+Plugin Name: High School Cube
+Plugin URI: http://inviziodesign.com/plugins/hs-cube
+Description: Allows you to directly integrate High School Cube into WordPress.
+Version: 0.1.0
+Author: Dean Papastrat
+Author URI: http://inviziodesign.com
+License: GPL2
+
+*************************************************************************************
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as 
+published by the Free Software Foundation.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+
+*************************************************************************************
+
+*/
+
+function hscube_scoreboard_embed_styles() {
+  wp_register_style('hscube_scoreboard_style', plugins_url('hs-cube/css/scoreboard_embed.css'));
+  wp_enqueue_style('hscube_scoreboard_style');
+}
+
+add_action('wp_enqueue_scripts', 'hscube_scoreboard_embed_styles');
+
+include_once('functions/shortcode.php')
+
+?>
