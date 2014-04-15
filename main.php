@@ -30,13 +30,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 */
 
-function hscube_scoreboard_embed_styles() {
-  wp_register_style('hscube_scoreboard_style', plugins_url('hs-cube/css/scoreboard_embed.css'));
-  wp_enqueue_style('hscube_scoreboard_style');
-}
-
-add_action('wp_enqueue_scripts', 'hscube_scoreboard_embed_styles');
-
+include_once('functions/initialize.php')
 include_once('functions/shortcode.php')
 
 ?>
