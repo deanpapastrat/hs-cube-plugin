@@ -14,11 +14,15 @@ function hscube_video_embed( $atts ) {
     ), $atts )
   );
 
+  $sanitized_url = filter_var($url, FILTER_SANITIZE_URL);
+  $sanitized_width = htmlentities($width);
+  $sanitized_height = htmlentities($height);
+
   // Find 6 digit ID; will change RegEx if ID format changes
-  preg_match('/\d{6}/', $url, $hscube_id);
+  preg_match('/\d{6}/', $sanitized_url, $hscube_id);
 
   // Return an iframe using the parameters defined.
-  return "<iframe src='http://www.highschoolcube.com/embed/$hscube_id[0]?nobrand=true&amp;stretch=false' width='$width' height='$height' frameborder='0' scrolling='no' allowtransparency='true' allowfullscreen mozallowfullscreen webkitallowfullscreen seamless></iframe>";
+  return "<iframe src='http://www.highschoolcube.com/embed/$hscube_id[0]?nobrand=true&amp;stretch=false' width='$sanitized_width' height='$sanitized_height' frameborder='0' scrolling='no' allowtransparency='true' allowfullscreen mozallowfullscreen webkitallowfullscreen seamless></iframe>";
 }
 
 function hscube_scoreboard_embed( $atts ) {
@@ -32,8 +36,12 @@ function hscube_scoreboard_embed( $atts ) {
     ), $atts )
   );
 
+  $sanitized_url = filter_var($url, FILTER_SANITIZE_URL);
+  $sanitized_width = htmlentities($width);
+  $sanitized_height = htmlentities($height);
+
   // Find 6 digit ID; will change RegEx if ID format changes
-  preg_match('/\d{6}/', $url, $hscube_id);
+  preg_match('/\d{6}/', $sanitized_url, $hscube_id);
 
   // Get a JSON file of the event
   $hscube_json = file_get_contents('https://www.highschoolcube.com/api/v1/events/'.$hscube_id[0].'.json');
@@ -45,10 +53,10 @@ function hscube_scoreboard_embed( $atts ) {
   // Check for images that don't exist, then return a div with the content we need.
 
   if (is_null($hscube_scoreboard_data['home_img']) or is_null($hscube_scoreboard_data['away_img'])) {
-    return "<div class='hscube-scoreboard'><div class='hscube-home-team hscube-team'><span class='hscube-home-team-name hscube-team-name'>".$hscube_scoreboard_data['home_name']."</span><span class='hscube-divider'>|</span><span class='hscube-home-team-score'>".$hscube_scoreboard_data['home_score']."</span></div><div class='hscube-away-team hscube-team'><span class='hscube-away-team-name hscube-team-name'>".$hscube_scoreboard_data['away_name']."</span><span class='hscube-divider'>|</span><span class='hscube-away-team-score'>".$hscube_scoreboard_data['away_score']."</span></div></div>";
+    return "<div class='hscube-scoreboard' style='width:$sanitized_width; height:$sanitized_height;'><div class='hscube-home-team hscube-team'><span class='hscube-home-team-name hscube-team-name'>".$hscube_scoreboard_data['home_name']."</span><span class='hscube-divider'>|</span><span class='hscube-home-team-score'>".$hscube_scoreboard_data['home_score']."</span></div><div class='hscube-away-team hscube-team'><span class='hscube-away-team-name hscube-team-name'>".$hscube_scoreboard_data['away_name']."</span><span class='hscube-divider'>|</span><span class='hscube-away-team-score'>".$hscube_scoreboard_data['away_score']."</span></div></div>";
   }
   else {
-    return "<div class='hscube-scoreboard'><div class='hscube-home-team hscube-team'><img src='".$hscube_scoreboard_data['home_img']."' class='hscube-home-team-logo hscube-team-logo'><span class='hscube-home-team-name hscube-team-name'>".$hscube_scoreboard_data['home_name']."</span><span class='hscube-divider'>|</span><span class='hscube-home-team-score'>".$hscube_scoreboard_data['home_score']."</span></div><div class='hscube-away-team hscube-team'><img src='".$hscube_scoreboard_data['away_img']."' class='hscube-away-team-logo hscube-team-logo'><span class='hscube-away-team-name hscube-team-name'>".$hscube_scoreboard_data['away_name']."</span><span class='hscube-divider'>|</span><span class='hscube-away-team-score'>".$hscube_scoreboard_data['away_score']."</span></div></div>";
+    return "<div class='hscube-scoreboard' style='width:$sanitized_width; height:$sanitized_height;'><div class='hscube-home-team hscube-team'><img src='".$hscube_scoreboard_data['home_img']."' class='hscube-home-team-logo hscube-team-logo'><span class='hscube-home-team-name hscube-team-name'>".$hscube_scoreboard_data['home_name']."</span><span class='hscube-divider'>|</span><span class='hscube-home-team-score'>".$hscube_scoreboard_data['home_score']."</span></div><div class='hscube-away-team hscube-team'><img src='".$hscube_scoreboard_data['away_img']."' class='hscube-away-team-logo hscube-team-logo'><span class='hscube-away-team-name hscube-team-name'>".$hscube_scoreboard_data['away_name']."</span><span class='hscube-divider'>|</span><span class='hscube-away-team-score'>".$hscube_scoreboard_data['away_score']."</span></div></div>";
   }
 }
 
