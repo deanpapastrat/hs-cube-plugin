@@ -1,6 +1,6 @@
 <?php
 
-//Shortcode Functions
+// Shortcode Functions
 
 // Video Player Embed Shortcode
 function hscube_video_embed( $atts ) {
@@ -51,7 +51,6 @@ function hscube_scoreboard_embed( $atts ) {
   $hscube_scoreboard_data = array('home_score' => $hscube_decoded_json['home_score'], 'away_score' => $hscube_decoded_json['away_score'], 'home_name' => $hscube_decoded_json['home_name'], 'away_name' => $hscube_decoded_json['away_name'], 'home_img' => $hscube_decoded_json['home_img'], 'away_img' => $hscube_decoded_json['away_img'], 'phase_name' => $hscube_decoded_json['phase_name'], 'live' => $hscube_decoded_json['is_live']); // The last two attributes here are in preparation for an expansion of the scoreboard shortcode.
 
   // Check for images that don't exist, then return a div with the content we need.
-
   if (is_null($hscube_scoreboard_data['home_img']) or is_null($hscube_scoreboard_data['away_img'])) {
     return "<div class='hscube-scoreboard' style='width:$sanitized_width; height:$sanitized_height;'><div class='hscube-home-team hscube-team'><span class='hscube-home-team-name hscube-team-name'>".$hscube_scoreboard_data['home_name']."</span><span class='hscube-divider'>|</span><span class='hscube-home-team-score'>".$hscube_scoreboard_data['home_score']."</span></div><div class='hscube-away-team hscube-team'><span class='hscube-away-team-name hscube-team-name'>".$hscube_scoreboard_data['away_name']."</span><span class='hscube-divider'>|</span><span class='hscube-away-team-score'>".$hscube_scoreboard_data['away_score']."</span></div></div>";
   }
