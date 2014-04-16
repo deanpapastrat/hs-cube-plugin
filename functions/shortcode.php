@@ -22,7 +22,7 @@ function hscube_video_embed( $atts ) {
   preg_match('/\d{6}/', $sanitized_url, $hscube_id);
 
   // Return an iframe using the parameters defined.
-  return "<iframe src='http://www.highschoolcube.com/embed/$hscube_id[0]?nobrand=true&amp;stretch=false' width='$sanitized_width' height='$sanitized_height' frameborder='0' scrolling='no' allowtransparency='true' allowfullscreen mozallowfullscreen webkitallowfullscreen seamless></iframe>";
+  return "<iframe src='http://www.highschoolcube.com/embed/".$hscube_id[0]."?nobrand=true&amp;stretch=false' width='$sanitized_width' height='$sanitized_height' frameborder='0' scrolling='no' allowtransparency='true' allowfullscreen mozallowfullscreen webkitallowfullscreen seamless></iframe>";
 }
 
 function hscube_scoreboard_embed( $atts ) {
