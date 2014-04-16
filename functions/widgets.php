@@ -107,7 +107,7 @@ class hscube_scoreboard_widget extends WP_Widget {
   function hscube_scoreboard_widget() {
 
     // Set basic widget options
-    $widget_ops = array('classname' => 'hscube-widget', 'description' => __('Adds a High School Cube video player to your sidebar or other widgetized area.', 'hscube_scoreboard_widget'));
+    $widget_ops = array('classname' => 'hscube-widget', 'description' => __('Adds a High School Cube scoreboard to your sidebar or other widgetized area.', 'hscube_scoreboard_widget'));
     parent::WP_Widget(false, $name = __('HS Cube Scoreboard', 'hscube_scoreboard_widget'), $widget_ops );
 
   }
