@@ -3,6 +3,7 @@
   border-radius: 5px;
   padding: 15px;
   border: 2px solid #555555;
+  color: #000000 ;
 }
 .hscube-scoreboard .hscube-team {
   padding: 10px;
@@ -14,4 +15,8 @@
 }
 .hscube-scoreboard .hscube-team .hscube-divider {
   padding: 0px 15px;
+}
+
+.hscube-scoreboard-widget img, .hscube-scoreboard-widget span {
+  padding: .3em;
 }
