@@ -185,16 +185,16 @@ class hscube_scoreboard_widget extends WP_Widget {
       echo 'URL missing';
     }
     elseif ( is_null($height) and is_null($width) ) {
-      echo do_shortcode('[hscube-scoreboard url="'.$url.'"]');
+      echo do_shortcode('[hscube-scoreboard url="'.$url.'" style_type="hscube-scoreboard-widget"]');
     }
     elseif ( is_null($height) ) {
-      echo do_shortcode('[hscube-scoreboard url="'.$url.'" width="'.$width.'"]');
+      echo do_shortcode('[hscube-scoreboard url="'.$url.'" width="'.$width.'" style_type="hscube-scoreboard-widget"]');
     }
     elseif ( is_null($width) ) {
-      echo do_shortcode('[hscube-scoreboard url="'.$url.'" height="'.$height.'"]');
+      echo do_shortcode('[hscube-scoreboard url="'.$url.'" height="'.$height.'" style_type="hscube-scoreboard-widget"]');
     }
     else {
-      echo do_shortcode('[hscube-scoreboard url="'.$url.'" width="'.$width.'" height="'.$height.'"]');
+      echo do_shortcode('[hscube-scoreboard url="'.$url.'" width="'.$width.'" height="'.$height.'" style_type="hscube-scoreboard-widget"]');
     }
 
     echo '</div>';
