@@ -45,11 +45,20 @@ function hscube_scoreboard_embed( $atts ) {
   // Find 6 digit ID; will change RegEx if ID format changes
   preg_match('/\d{6}/', $sanitized_url, $hscube_id);
 
-  // Get a JSON file of the event
-  $hscube_json = file_get_contents('https://www.highschoolcube.com/api/v1/events/'.$hscube_id[0].'.json');
+  // Look for cached data with the correct ID
+  if ( false === ( $hscube_decoded_json = get_transient( 'hscube_json_decoded'.$hscube_id[0] ) ) ) {
+    
+    // It wasn't there, so regenerate the data and save the transient; get the data from HS cube
+    $hscube_json = file_get_contents('https://www.highschoolcube.com/api/v1/events/'.$hscube_id[0].'.json');
 
   // Decode the JSON file and save it into an array we can use without re-searching through the entire JSON file
-  $hscube_decoded_json = json_decode($hscube_json, true);
+    $hscube_decoded_json = json_decode($hscube_json, true);
+
+    // Save data for later; will unload from cache after a minute so the scoreboard isn't too out of date
+    set_transient( 'hscube_json_decoded'.$hscube_id[0], $hscube_decoded_json, 60 );
+
+  }
+
   $hscube_scoreboard_data = array('home_score' => $hscube_decoded_json['home_score'], 'away_score' => $hscube_decoded_json['away_score'], 'home_name' => $hscube_decoded_json['home_name'], 'away_name' => $hscube_decoded_json['away_name'], 'home_img' => $hscube_decoded_json['home_img'], 'away_img' => $hscube_decoded_json['away_img'], 'phase_name' => $hscube_decoded_json['phase_name'], 'live' => $hscube_decoded_json['is_live']); // The last two attributes here are in preparation for an expansion of the scoreboard shortcode.
 
   // Check for images that don't exist, then return a div with the content we need.
@@ -61,7 +70,7 @@ function hscube_scoreboard_embed( $atts ) {
   }
 }
 
-
+// Load the shortcodes
 add_shortcode( 'hscube-video', 'hscube_video_embed' );
 add_shortcode( 'hscube-scoreboard', 'hscube_scoreboard_embed' );
 
