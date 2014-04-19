@@ -74,5 +74,4 @@ function hscube_scoreboard_embed( $atts ) {
 add_shortcode( 'hscube-video', 'hscube_video_embed' );
 add_shortcode( 'hscube-scoreboard', 'hscube_scoreboard_embed' );
 
-
 ?>
