@@ -51,6 +51,9 @@ class hscube_video_player_widget extends WP_Widget {
 
   // widget update
   function update($new_instance, $old_instance) {
+      if ( !current_user_can('edit_theme_options') ) {
+        return;
+      }
       $instance = $old_instance;
       // Fields
       $instance['title'] = strip_tags($new_instance['title']);
@@ -152,6 +155,9 @@ class hscube_scoreboard_widget extends WP_Widget {
 
   // widget update
   function update($new_instance, $old_instance) {
+      if ( !current_user_can('edit_theme_options') ) {
+        return;
+      }
       $instance = $old_instance;
       // Fields
       $instance['title'] = strip_tags($new_instance['title']);
